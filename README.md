@@ -68,7 +68,7 @@ ppt : 발표자료 pdf 파일을 업로드하는 폴더입니다.
 
 ## GIT ISSUE(ISSUE 번호 : #5) : https://github.com/shushuburger/FineDust/issues/5
 
-## GIT PR(PR 번호 : ) :
+## GIT PR(PR 번호 : #6) : https://github.com/shushuburger/FineDust/pull/6
   
 ---------------------------------------------------------------
 
