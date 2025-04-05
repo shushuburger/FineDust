@@ -54,18 +54,23 @@ ppt : 발표자료 pdf 파일을 업로드하는 폴더입니다.
 - 이해당사자 인터뷰 추가 진행
 - 기존 서비스 분석 진행
   - 아이폰, 갤럭시, 네이버
-- 3주차 발표 영상 제작 및 업로드
+- 4주차 발표 영상 제작 및 업로드
 
-## 발표 URL : 
+## 발표 URL : https://youtu.be/Wvv5hfwp880
 
 ## 제출물
 - 04조-4주차-미세먼지 데이터 시각화 웹서비스 개발-문제정의서.pdf
 - 04조-4주차-미세먼지 데이터 시각화 웹서비스 개발-문제정의서.docx
+- 04조-4주차-미세먼지 데이터 시각화 웹 서비스 개발-발표영상 링크.pdf
+- 04조-4주차-미세먼지 데이터 시각화 웹 서비스 개발-발표영상 링크.txt
 - 04조-4주차-미세먼지 데이터 시각화 웹 서비스 개발-발표자료.pdf
+- 갤럭시_날씨_앱_분석.pdf
+- 네이버_날씨_서비스_분석.pdf
+- 아이폰_날씨_앱_분석.pdf
 
-## GIT ISSUE(ISSUE 번호 :#7 ) : https://github.com/shushuburger/FineDust/issues/7 
+## GIT ISSUE(ISSUE 번호 : #7) : https://github.com/shushuburger/FineDust/issues/7 
 
-## GIT PR(PR 번호 : ) : 
+## GIT PR(PR 번호 : #8) : https://github.com/shushuburger/FineDust/pull/8
   
 ---------------------------------------------------------------
 
