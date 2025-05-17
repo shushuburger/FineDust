@@ -13,8 +13,8 @@ DATA_DIR = os.path.join(BASE_DIR, "..", "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 
 # 저장 경로
-CSV_FILE = os.path.join(DATA_DIR, "미세먼지_서울데이터.csv")
-XLSX_FILE = os.path.join(DATA_DIR, "미세먼지_서울데이터.xlsx")
+CSV_FILE = os.path.join(DATA_DIR, "미세먼지_데이터.csv")
+XLSX_FILE = os.path.join(DATA_DIR, "미세먼지_데이터.xlsx")
 
 # 서울 측정소 리스트
 seoul_stations = [
