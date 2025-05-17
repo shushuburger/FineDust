@@ -33,8 +33,8 @@ if response.status_code == 200:
         daejeon_df = df[df["addr"].str.contains("서울")]
 
         # 수정된 경로로 저장
-        daejeon_df.to_csv(CSV_PATH, index=False, encoding="utf-8-sig")
-        daejeon_df.to_excel(XLSX_PATH, index=False)
+        df.to_csv(CSV_PATH, index=False, encoding="utf-8-sig")
+        df.to_excel(XLSX_PATH, index=False)
 
         print(f"✅ 저장 완료 → {CSV_PATH}, {XLSX_PATH}")
     except Exception as e:
