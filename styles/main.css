@@ -59,23 +59,24 @@ body {
 /* 그래프 영역 */
 /* 그래프 영역을 가로 정렬 */
 .graph-section {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;  /* ✅ center로 수정 */
-    gap: 1rem;
-    padding: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem; /* 카드 사이 간격 */
+  padding: 1rem 0;
+  max-width: 800px;    /* ✅ 고정 너비 지정 */
+  margin: 0 auto;      /* ✅ 가운데 정렬 */
 }
 
 /* 각 개별 gauge 카드 */
 .graph-section .gauge {
-    flex: 0 0 200px; /* ✅ 고정 너비 비슷하게 지정 */
-    max-width: 220px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 1rem;
-    text-align: center;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex: 0 0 220px;      /* ✅ 정확한 너비 설정 */
+  max-width: 240px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .graph-section .gauge canvas {
