@@ -19,12 +19,12 @@
 
     <!-- 메인 영역 -->
     <div class="container mb-5 mt-3">
-        <!-- 상단: 그래프 + 지도 -->
         <div class="row">
-            <!-- 좌측: 그래프 -->
-            <div class="col-lg-6">
-                <div class="graph-section">
-                    <div class="gauge position-relative">
+            <!-- 좌측: 그래프 + 가이드 -->
+            <div class="col-lg-6 d-flex flex-column">
+                <!-- 그래프: 가로 배열 -->
+                <div class="graph-section d-flex justify-content-between gap-3 mb-4">
+                    <div class="gauge position-relative text-center">
                         <h5>미세먼지 (PM10)</h5>
                         <canvas id="pm10Chart" width="160" height="100"></canvas>
                         <p id="pm10">나쁨 (125)</p>
@@ -33,7 +33,7 @@
                         </button>
                         <div class="popover-box" id="pm10-popover" style="display: none;">...</div>
                     </div>
-                    <div class="gauge position-relative">
+                    <div class="gauge position-relative text-center">
                         <h5>초미세먼지 (PM2.5)</h5>
                         <canvas id="pm25Chart" width="160" height="100"></canvas>
                         <p id="pm25">보통 (34)</p>
@@ -42,7 +42,7 @@
                         </button>
                         <div class="popover-box" id="pm2.5-popover" style="display: none;">...</div>
                     </div>
-                    <div class="gauge position-relative">
+                    <div class="gauge position-relative text-center">
                         <h5>오존 (O₃)</h5>
                         <canvas id="o3Chart" width="160" height="100"></canvas>
                         <p id="o3">보통 (0.054)</p>
@@ -51,6 +51,11 @@
                         </button>
                         <div class="popover-box" id="o3-popover" style="display: none;">...</div>
                     </div>
+                </div>
+
+                <!-- 가이드 섹션 -->
+                <div class="guide-section">
+                    <!-- 카드 작업 여기서 하세요! (경민, 여민) -->
                 </div>
             </div>
 
@@ -74,12 +79,8 @@
                 </div>
             </div>
         </div>
-
-        <!-- 하단: 대처방안 가이드 -->
-        <div class="guide-section">
-            <!-- 카드 작업 여기서 하세요! (경민, 여민) 주석 지우지 마세욥!! 편집점입니다 -->
-        </div>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./scripts/main.js"></script>

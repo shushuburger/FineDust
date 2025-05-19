@@ -48,36 +48,32 @@ body {
     font-weight: bold;
 }
 
-/* 그래프와 지도 병렬 배치 */
-.graph-map-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem; /* 줄이기 */
-  justify-content: space-between;
-  margin-bottom: 2rem;
+/* 좌측 패널(그래프 + 가이드) */
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 /* 그래프 영역 */
 /* 그래프 영역을 가로 정렬 */
 .graph-section {
-  display: flex;
-  flex: 1 1 48%; /* 너비 축소 */
-  flex-direction: row;  /* ← 가로 정렬 */
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem;
-  min-width: 300px;
+    display: flex;
+    flex-direction: row;  /* ← 가로 정렬 */
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
 }
 
 /* 각 개별 gauge 카드 */
 .graph-section .gauge {
-  flex: 1;
-  min-width: 220px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 220px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .graph-section .gauge canvas {
@@ -206,24 +202,27 @@ body {
 
 /* 반응형 대응 */
 @media (max-width: 992px) {
-    .graph-map-wrapper {
+    .left-panel {
+        width: 100%;
+    }
+
+    .graph-section {
         flex-direction: column;
         align-items: center;
     }
 
-    .graph-section,
     .map-section {
         width: 100%;
+        margin-top: 1rem;
     }
 }
-
 
 /* 대처 방안 섹션 */
 /* 이 아래에서 작업하세요!! (경민,여민) */
 /* 주석 삭제하지 말 것! (github 편집 시 기준점으로 삼을 거임) */
 .guide-section {
     background-color: #ffffff;
-    margin-top: 2rem;
+    margin-top: 1rem;
     padding: 1rem;
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
