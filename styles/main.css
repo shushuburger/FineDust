@@ -50,20 +50,23 @@ body {
 
 /* 그래프와 지도 병렬 배치 */
 .graph-map-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* 줄이기 */
+  justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
 /* 그래프 영역 */
 /* 그래프 영역을 가로 정렬 */
 .graph-section {
   display: flex;
+  flex: 1 1 48%; /* 너비 축소 */
   flex-direction: row;  /* ← 가로 정렬 */
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem;
+  min-width: 300px;
 }
 
 /* 각 개별 gauge 카드 */
