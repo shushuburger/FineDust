@@ -53,13 +53,15 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    min-width: 0; /* 추가: 넘침 방지 */
 }
 
 /* 그래프 영역 */
 /* 그래프 영역을 가로 정렬 */
 .graph-section {
     display: flex;
-    flex-direction: row;  /* ← 가로 정렬 */
+    flex-direction: row;
+    flex-wrap: wrap; /* 추가: 좁은 화면에서 줄바꿈 */
     justify-content: space-between;
     gap: 1rem;
     padding: 1rem 0;
@@ -67,8 +69,9 @@ body {
 
 /* 각 개별 gauge 카드 */
 .graph-section .gauge {
-    flex: 1;
-    min-width: 220px;
+    flex: 1 1 30%; /* 수정: 3개가 한 줄에 들어가도록 */
+    min-width: 160px;
+    max-width: 250px;
     background-color: #ffffff;
     border-radius: 10px;
     padding: 1rem;
@@ -99,8 +102,10 @@ body {
 
 /* 지도 영역 */
 .map-section {
-    flex: 1 1 45%;
-    min-width: 300px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0; /* 추가: 넘침 방지 */
     background-color: #ffffff;
     padding: 1rem;
     border-radius: 12px;
