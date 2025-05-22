@@ -2,9 +2,65 @@
 /* 이 아래에서 작업하세요!! (경민,여민) */
 /* 주석 삭제하지 말 것! (github 편집 시 기준점으로 삼을 거임) */
 .guide-section {
-    background-color: #ffffff;
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  margin-top: 1rem;
+  padding: 1rem;
+  height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+.card-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards-container {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  gap: 1rem;
+  will-change: transform;
+  height: 90%;
+}
+
+.card {
+  flex: 0 0 80%;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  padding: 2rem;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem 0.7rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 2;
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
