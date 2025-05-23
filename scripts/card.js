@@ -3,113 +3,119 @@
 
 
   const container = document.querySelector('.cards-container');
+  const cards = container.children;
   const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
+  const cardWidth = cards[0].offsetWidth + 20; // 카드 + margin
+  let currentIndex = 0;
 
-  function updateSlidePosition() {
-    container.style.transition = 'none';
-    container.style.transform = `translateX(-${(cards[0].offsetWidth + 16)}px)`;
+  // 무한 루프 위해 앞뒤 복제
+  for (let i = 0; i < cards.length; i++) {
+    container.appendChild(cards[i].cloneNode(true));
   }
 
-  // 초기 카드 복제: 앞뒤에 하나씩 붙이기
-  const cards = Array.from(container.children);
-  const firstClone = cards[0].cloneNode(true);
-  const lastClone = cards[cards.length - 1].cloneNode(true);
+  let isDragging = false;
+  let startX = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+  let animationID;
 
-  container.appendChild(firstClone);
-  container.insertBefore(lastClone, cards[0]);
-
-  let currentIndex = 1;
-  const cardWidth = cards[0].offsetWidth + 16;
-
-  container.style.transform = `translateX(-${cardWidth}px)`;
-
-  function slideTo(index) {
-    container.style.transition = 'transform 0.4s ease-in-out';
-    container.style.transform = `translateX(-${cardWidth * index}px)`;
-    currentIndex = index;
+  function setSliderPosition() {
+    container.style.transform = `translateX(${currentTranslate}px)`;
   }
+
+  function animation() {
+    setSliderPosition();
+    if (isDragging) requestAnimationFrame(animation);
+  }
+
+  function getPositionX(e) {
+    return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
+  }
+
+  function touchStart(e) {
+    isDragging = true;
+    startX = getPositionX(e);
+    animationID = requestAnimationFrame(animation);
+  }
+
+  function touchMove(e) {
+    if (!isDragging) return;
+    const currentX = getPositionX(e);
+    const diff = currentX - startX;
+    currentTranslate = prevTranslate + diff;
+  }
+
+  function touchEnd() {
+    isDragging = false;
+    cancelAnimationFrame(animationID);
+
+    const movedBy = currentTranslate - prevTranslate;
+
+    if (movedBy < -50) {
+      nextSlide();
+    } else if (movedBy > 50) {
+      prevSlide();
+    } else {
+      currentTranslate = prevTranslate;
+      setSliderPosition();
+    }
+  }
+
+  function updateTranslate() {
+    currentTranslate = -currentIndex * cardWidth;
+    prevTranslate = currentTranslate;
+    setSliderPosition();
+  }
+
+  function nextSlide() {
+    currentIndex++;
+    updateTranslate();
+  }
+
+  function prevSlide() {
+    currentIndex--;
+    updateTranslate();
+  }
+
+  // 무한 루프를 위한 슬라이드 감시
+  container.addEventListener('transitionend', () => {
+    const totalCards = container.children.length / 2;
+
+    if (currentIndex >= totalCards) {
+      currentIndex = 0;
+      container.style.transition = 'none';
+      updateTranslate();
+      requestAnimationFrame(() => {
+        container.style.transition = 'transform 0.3s ease';
+      });
+    }
+
+    if (currentIndex < 0) {
+      currentIndex = totalCards - 1;
+      container.style.transition = 'none';
+      updateTranslate();
+      requestAnimationFrame(() => {
+        container.style.transition = 'transform 0.3s ease';
+      });
+    }
+  });
+
+  // 버튼 이벤트
+  nextBtn.addEventListener('click', () => {
+    nextSlide();
+  });
 
   prevBtn.addEventListener('click', () => {
-    if (currentIndex <= 0) return;
-    slideTo(currentIndex - 1);
+    prevSlide();
   });
 
-  nextBtn.addEventListener('click', () => {
-    if (currentIndex >= cards.length + 1) return;
-    slideTo(currentIndex + 1);
-  });
+  // 드래그 이벤트
+  container.addEventListener('mousedown', touchStart);
+  container.addEventListener('mousemove', touchMove);
+  container.addEventListener('mouseup', touchEnd);
+  container.addEventListener('mouseleave', touchEnd);
 
-  container.addEventListener('transitionend', () => {
-    if (currentIndex === 0) {
-      container.style.transition = 'none';
-      currentIndex = cards.length;
-      container.style.transform = `translateX(-${cardWidth * currentIndex}px)`;
-    }
-    if (currentIndex === cards.length + 1) {
-      container.style.transition = 'none';
-      currentIndex = 1;
-      container.style.transform = `translateX(-${cardWidth}px)`;
-    }
-  });
-
-  window.addEventListener('resize', () => {
-    container.style.transition = 'none';
-    container.style.transform = `translateX(-${cardWidth * currentIndex}px)`;
-  });
-
-  // 드래그 관련 이벤트
-let isDragging = false;
-let startX = 0;
-let currentTranslate = 0;
-let prevTranslate = 0;
-let animationID;
-
-// 드래그 시작
-function startDrag(e) {
-  isDragging = true;
-  startX = getPositionX(e);
-  animationID = requestAnimationFrame(animation);
-}
-
-// 드래그 중
-function onDrag(e) {
-  if (!isDragging) return;
-  const currentX = getPositionX(e);
-  const diff = currentX - startX;
-  currentTranslate = prevTranslate + diff;
-  setSliderPosition();
-}
-
-// 드래그 끝
-function endDrag() {
-  isDragging = false;
-  cancelAnimationFrame(animationID);
-
-  const cardWidth = cards[0].offsetWidth + 20;
-  const moveAmount = Math.round(currentTranslate / cardWidth);
-  currentIndex = -moveAmount;
-  updateSliderPosition();
-}
-
-function getPositionX(e) {
-  return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-}
-
-function animation() {
-  setSliderPosition();
-  if (isDragging) requestAnimationFrame(animation);
-}
-
-function setSliderPosition() {
-  container.style.transform = `translateX(${currentTranslate}px)`;
-}
-
-// 기존 컨테이너에 이벤트 연결
-container.addEventListener('mousedown', startDrag);
-container.addEventListener('mousemove', onDrag);
-container.addEventListener('mouseup', endDrag);
-container.addEventListener('mouseleave', endDrag);
-container.addEventListener('touchstart', startDrag);
-container.addEventListener('touchmove', onDrag);
-container.addEventListener('touchend', endDrag);
+  container.addEventListener('touchstart', touchStart);
+  container.addEventListener('touchmove', touchMove);
+  container.addEventListener('touchend', touchEnd);
