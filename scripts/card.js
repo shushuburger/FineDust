@@ -6,13 +6,9 @@
   const cards = container.children;
   const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
-  const cardWidth = cards[0].offsetWidth + 20; // 카드 + margin
+  const cardWidth = cards[0].offsetWidth + 20; 
   let currentIndex = 0;
 
-  // 무한 루프 위해 앞뒤 복제
-  for (let i = 0; i < cards.length; i++) {
-    container.appendChild(cards[i].cloneNode(true));
-  }
 
   let isDragging = false;
   let startX = 0;
@@ -78,44 +74,52 @@
     updateTranslate();
   }
 
-  // 무한 루프를 위한 슬라이드 감시
-  container.addEventListener('transitionend', () => {
-    const totalCards = container.children.length / 2;
+let isAnimating = false;
 
-    if (currentIndex >= totalCards) {
-      currentIndex = 0;
-      container.style.transition = 'none';
-      updateTranslate();
-      requestAnimationFrame(() => {
-        container.style.transition = 'transform 0.3s ease';
-      });
-    }
+function nextSlide() {
+  if (isAnimating) return;
+  isAnimating = true;
 
-    if (currentIndex < 0) {
-      currentIndex = totalCards - 1;
-      container.style.transition = 'none';
-      updateTranslate();
-      requestAnimationFrame(() => {
-        container.style.transition = 'transform 0.3s ease';
-      });
-    }
+  container.style.transition = 'transform 0.3s ease';
+  container.style.transform = `translateX(-${cardWidth}px)`;
+
+  setTimeout(() => {
+    container.style.transition = 'none';
+    container.appendChild(container.firstElementChild);
+    container.style.transform = 'translateX(0)';
+    isAnimating = false;
+  }, 300);
+}
+
+function prevSlide() {
+  if (isAnimating) return;
+  isAnimating = true;
+
+  container.style.transition = 'none';
+  container.insertBefore(container.lastElementChild, container.firstElementChild);
+  container.style.transform = `translateX(-${cardWidth}px)`;
+
+  requestAnimationFrame(() => {
+    container.style.transition = 'transform 0.3s ease';
+    container.style.transform = 'translateX(0)';
   });
 
-  // 버튼 이벤트
-  nextBtn.addEventListener('click', () => {
-    nextSlide();
-  });
+  setTimeout(() => {
+    isAnimating = false;
+  }, 300);
+}
 
-  prevBtn.addEventListener('click', () => {
-    prevSlide();
-  });
+// 버튼 이벤트
+nextBtn.addEventListener('click', nextSlide);
+prevBtn.addEventListener('click', prevSlide);
+
 
   // 드래그 이벤트
   container.addEventListener('mousedown', touchStart);
   container.addEventListener('mousemove', touchMove);
   container.addEventListener('mouseup', touchEnd);
-  container.addEventListener('mouseleave', touchEnd);
+  //container.addEventListener('mouseleave', touchEnd);
 
-  container.addEventListener('touchstart', touchStart);
+  //container.addEventListener('touchstart', touchStart);
   container.addEventListener('touchmove', touchMove);
   container.addEventListener('touchend', touchEnd);
