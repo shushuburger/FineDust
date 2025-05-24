@@ -1,10 +1,98 @@
 /* 대처 방안 섹션 */
 /* 이 아래에서 작업하세요!! (경민,여민) */
 /* 주석 삭제하지 말 것! (github 편집 시 기준점으로 삼을 거임) */
+
 .guide-section {
-    background-color: #ffffff;
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 400px;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.card-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cards-wrapper {
+  height: 100%;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards-container {
+  display: flex;
+  height: 90%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+  
+  
+}
+
+.card {
+  flex: 0 0 70%;
+  margin: 0 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  user-select: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-slider .card:nth-child(2) {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.prev-btn,
+.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.2s ease;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.prev-btn {
+  left: 10px;
+}
+.next-btn {
+  right: 10px;
+}
+
+
+.card h3 {
+  font-size: 20px; /* 원하는 title 크기 */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px; /* 원하는 desc 크기 */
+  line-height: 1.5;
 }

@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 
 <body class="bg-light">
@@ -56,7 +57,18 @@
 
                 <!-- 가이드 섹션 -->
                 <div class="guide-section">
-                    <!-- 카드 작업 여기서 하세요! (경민, 여민) -->
+                    <div class="card-slider">
+                        <button class="prev-btn">❮</button>
+                            <div class="cards-wrapper">
+                                <div class="cards-container">
+                                    <div class="card">카드 1</div>
+                                    <div class="card">카드 2</div>
+                                    <div class="card">카드 3</div>
+                                    <div class="card">카드 4</div>
+                                </div>
+                            </div>
+                        <button class="next-btn">❯</button>
+                    </div>
                 </div>
             </div>
 
