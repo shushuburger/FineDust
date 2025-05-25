@@ -140,12 +140,17 @@ function renderCardsByGrade(grade) {
     // 텍스트 추가
     const titleEl = document.createElement('h3');
     titleEl.textContent = card.title;
+    cardEl.appendChild(titleEl);
 
     const descEl = document.createElement('p');
-    descEl.textContent = card.desc;
-
-    cardEl.appendChild(titleEl);
-    cardEl.appendChild(descEl);
+    descEl.innerHTML = card.desc;
+  
+    // 설명(desc)이 있을 때만 추가
+    if (card.desc) {
+      const descEl = document.createElement('p');
+      descEl.innerHTML = card.desc;
+      cardEl.appendChild(descEl);
+    }
 
     container.appendChild(cardEl);
   });
@@ -177,7 +182,7 @@ const cardData = {
     },
     {
       title: '빨래를 야외에 널어도 괜찮습니다.', 
-      html: `` // 이건 로티 파일이 없어서 html+css 만으로 구현된거 넣어야 하는데 잘 안되서 아직 못 함.
+      html: `  ` // 이건 로티 파일이 없어서 html+css 만으로 구현된거 넣어야 하는데 잘 안되서 아직 못 함.
     }
   ],
   '보통': [
@@ -237,7 +242,7 @@ const cardData = {
     },
     {
       title: '외출 시 보건용 마스크 착용하기(KF80, KF94, KF99)',
-      desc: '올바른 마스크 착용법', //링크 삽입하고 싶은데 아직 못 함.
+      desc: '<a href="https://www.kdca.go.kr/gallery.es?mid=a20503010000&bid=0002&act=view&list_no=144638" target="_blank" style="color: #007BFF; text-decoration: underline;">올바른 마스크 착용법 보기</a>',
       lottieHTML: `
         <dotlottie-player 
           src="https://lottie.host/783839fc-3100-4022-80f5-2bc875facac7/suGs8mWnge.lottie" 
@@ -264,7 +269,10 @@ const cardData = {
   '매우 나쁨': [
     {
       title: '외출 시 보건용 마스크 착용하기(KF80, KF94, KF99)',
-      desc: '올바른 마스크 착용법', //링크 삽입하고 싶은데 아직 못 함.
+      desc: [
+        '<a href="https://www.kdca.go.kr/gallery.es?mid=a20503010000&bid=0002&act=view&list_no=144638" target="_blank" style="color: #007BFF; text-decoration: underline;"> 올바른 마스크 착용법 보기 </a>',
+        '<a href="https://www.coupang.com/np/search?component=&q=보건용+마스크&channel=user" target="_blank" style="color: #007BFF; text-decoration: underline;"> 마스크 구매 링크 </a>'
+      ],
       lottieHTML: `
         <dotlottie-player 
           src="https://lottie.host/783839fc-3100-4022-80f5-2bc875facac7/suGs8mWnge.lottie" 
@@ -308,9 +316,8 @@ const cardData = {
   ]
 };
 
-// 미세먼지 등급 예시
-const currentGrade = getLevelForJson(value); // API나 사용자 선택 등으로 동적으로 설정
-renderCardsByGrade(currentGrade);
+// 여기만 연동 어케 잘하면 될 듯하다.
+const currentGrade = '좋음'; // API나 사용자 선택 등으로 동적으로 설정
 
 // 미세먼지 등급 구하는 함수
 function getLevelForJson(value) {
@@ -322,6 +329,22 @@ function getLevelForJson(value) {
   return '매우 나쁨';
 }
 
+const levels = ["좋음", "보통", "나쁨", "매우 나쁨"];
+
+const slider = document.getElementById('levelSlider');
+const guidelineBox = document.getElementById('guidelineBox');
+const guidelineText = document.getElementById('guidelineText');
+
+const Index = levels.indexOf(currentGrade);
+slider.value = Index;
+renderCardsByGrade(currentGrade);
+
+// 슬라이더를 움직일 때마다 카드 변경
+slider.addEventListener('input', () => {
+  const selectedIndex = parseInt(slider.value);
+  const selectedGrade = levels[selectedIndex];
+  renderCardsByGrade(selectedGrade);
+});
 
 
 // 버튼 이벤트
