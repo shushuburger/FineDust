@@ -13,6 +13,7 @@
   perspective: 1000px;
 }
 
+/*카드 집합 상위1*/
 .card-slider {
   position: relative;
   width: 100%;
@@ -20,6 +21,7 @@
   overflow: hidden;
 }
 
+/*카드 집합 상위2*/
 .cards-wrapper {
   height: 100%;
   overflow: hidden;
@@ -27,15 +29,17 @@
   justify-content: center;
 }
 
+/*카드 집합 상위3*/
 .cards-container {
   display: flex;
   height: 90%;
   transform-style: preserve-3d;
   transition: transform 0.5s ease;
   
-  
+
 }
 
+/*카드*/
 .card {
   flex: 0 0 70%;
   margin: 0 20px;
@@ -56,6 +60,7 @@
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
+/*카드 이동 버튼*/
 .prev-btn,
 .next-btn {
   position: absolute;
@@ -85,24 +90,26 @@
   right: 10px;
 }
 
-/*카드 안에 내용*/
+
+/*카드 안에 텍스트(text)*/
 .card h3 {
-  font-size: 20px; /* 원하는 title 크기 */
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
+/* desc 부분 */
 .card p {
-  font-size: 16px; /* 원하는 desc 크기 */
+  font-size: 16px;
   line-height: 1.5;
 }
 
-/*슬라이더*/
+/* 슬라이더 */
 body {
   font-family: Arial, sans-serif;
-  padding: 2rem;
+  padding: 0;
   background-color: #f0f4f8;
-  color: #333;
+  color: #45ebba;
 }
 
 .container {
@@ -119,6 +126,7 @@ body {
   margin: 1rem 0;
 }
 
+/* 슬라이더 밑에 등급 글씨*/
 .levels {
   display: flex;
   justify-content: space-between;

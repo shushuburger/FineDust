@@ -9,7 +9,6 @@
   const cardWidth = cards[0].offsetWidth + 20; 
   let currentIndex = 0;
 
-
   let isDragging = false;
   let startX = 0;
   let currentTranslate = 0;
@@ -29,6 +28,7 @@
     return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
   }
 
+// 드래그 동작 
   function touchStart(e) {
     isDragging = true;
     startX = getPositionX(e);
@@ -64,6 +64,7 @@
     setSliderPosition();
   }
 
+// 이전/다음 (넘기는) 슬라이더 동작 
   function nextSlide() {
     currentIndex++;
     updateTranslate();
@@ -76,7 +77,7 @@
 
 let isAnimating = false;
 
-function nextSlide() {
+function nextSlide() { // 다음 카드 넘기기
   if (isAnimating) return;
   isAnimating = true;
 
@@ -92,7 +93,7 @@ function nextSlide() {
   }, 300);
 }
 
-function prevSlide() {
+function prevSlide() { // 이전 카드 넘기기
   if (isAnimating) return;
   isAnimating = true;
 
@@ -112,8 +113,7 @@ function prevSlide() {
 }
 
 
-
-// 애니메이션 다시 로드
+// 애니메이션 다시 로드(카드 넘겨서 다시 돌아왔을 때도 애니메이션 보이게 하기 위해)
 function restartLottieAnimations() {
   const players = container.querySelectorAll('dotlottie-player');
   players.forEach(player => {
@@ -122,8 +122,9 @@ function restartLottieAnimations() {
   });
 }
 
+// 등급에 따라 카드 안의 내용 렌더링
 function renderCardsByGrade(grade) {
-  const container = document.querySelector('.cards-container');
+  const container = document.querySelector('.cards-container'); 
   container.innerHTML = ''; // 기존 카드 제거
 
   const cards = cardData[grade];
@@ -137,11 +138,19 @@ function renderCardsByGrade(grade) {
       cardEl.innerHTML += card.lottieHTML;
     }
 
+    // 그 외 애니메이션 삽입 방식식
+    if (card.html) {
+      const htmlWrapper = document.createElement('div');
+      htmlWrapper.innerHTML = card.html;
+      cardEl.appendChild(htmlWrapper);
+    }
+
     // 텍스트 추가
     const titleEl = document.createElement('h3');
     titleEl.textContent = card.title;
     cardEl.appendChild(titleEl);
 
+    // 설명 추가
     const descEl = document.createElement('p');
     descEl.innerHTML = card.desc;
   
@@ -156,6 +165,7 @@ function renderCardsByGrade(grade) {
   });
 }
 
+// 등급에 따른 애니메이션 
 const cardData = {
   '좋음': [
     {
@@ -182,7 +192,58 @@ const cardData = {
     },
     {
       title: '빨래를 야외에 널어도 괜찮습니다.', 
-      html: `  ` // 이건 로티 파일이 없어서 html+css 만으로 구현된거 넣어야 하는데 잘 안되서 아직 못 함.
+      html: `
+      <style>
+        .laundry-line {
+          position: relative;
+          width: 300px;
+          height: 180px;
+          border-top: 4px solid #555;
+          margin: 0 auto;
+          overflow: visible;
+        }
+
+        .cloth {
+          position: absolute;
+          top: 0;
+          width: 70px;
+          height: 100px;
+          background: #9addff;
+          border: 2px solid #9addff;
+          transform-origin: top center;
+          animation: sway 2s ease-in-out infinite;
+        }
+
+        .cloth:nth-child(1) {
+          left: 20px;
+          animation-delay: 0s;
+        }
+
+        .cloth:nth-child(2) {
+          left: 110px;
+          animation-delay: 0.2s;
+        }
+
+        .cloth:nth-child(3) {
+          left: 200px;
+          animation-delay: 0.4s;
+        }
+
+        @keyframes sway {
+          0% { transform: rotateZ(0deg); }
+          25% { transform: rotateZ(5deg); }
+          50% { transform: rotateZ(0deg); }
+          75% { transform: rotateZ(-5deg); }
+          100% { transform: rotateZ(0deg); }
+        }
+      </style>
+
+      <div class="laundry-line">
+        <div class="cloth"></div>
+        <div class="cloth"></div>
+        <div class="cloth"></div>
+      </div>
+    `
     }
   ],
   '보통': [
@@ -197,8 +258,59 @@ const cardData = {
         </dotlottie-player>`
     },
     {
-        title: '빨래를 야외에 널어도 괜찮습니다.',
-        HTML : '' // 이건 로티 파일이 없어서 html+css 만으로 구현된거 넣어야 하는데 잘 안되서 아직 못 함.
+      title: '빨래를 야외에 널어도 괜찮습니다.', 
+      html: `
+      <style>
+        .laundry-line {
+          position: relative;
+          width: 300px;
+          height: 180px;
+          border-top: 4px solid #555;
+          margin: 0 auto;
+          overflow: visible;
+        }
+
+        .cloth {
+          position: absolute;
+          top: 0;
+          width: 70px;
+          height: 100px;
+          background: #9addff;
+          border: 2px solid #9addff;
+          transform-origin: top center;
+          animation: sway 2s ease-in-out infinite;
+        }
+
+        .cloth:nth-child(1) {
+          left: 20px;
+          animation-delay: 0s;
+        }
+
+        .cloth:nth-child(2) {
+          left: 110px;
+          animation-delay: 0.2s;
+        }
+
+        .cloth:nth-child(3) {
+          left: 200px;
+          animation-delay: 0.4s;
+        }
+
+        @keyframes sway {
+          0% { transform: rotateZ(0deg); }
+          25% { transform: rotateZ(5deg); }
+          50% { transform: rotateZ(0deg); }
+          75% { transform: rotateZ(-5deg); }
+          100% { transform: rotateZ(0deg); }
+        }
+      </style>
+
+      <div class="laundry-line">
+        <div class="cloth"></div>
+        <div class="cloth"></div>
+        <div class="cloth"></div>
+      </div>
+    `
     },
     {
         title: '환기를 해도 괜찮습니다.',
@@ -223,6 +335,19 @@ const cardData = {
   ],
   '나쁨': [
     {
+      title: '외출 시 보건용 마스크 착용하기(KF80, KF94, KF99)',
+      desc: '<a href="https://www.kdca.go.kr/gallery.es?mid=a20503010000&bid=0002&act=view&list_no=144638" target="_blank" style="color: #007BFF; text-decoration: underline;">올바른 마스크 착용법 보기</a>',
+      lottieHTML: `
+        <dotlottie-player 
+          src="https://lottie.host/783839fc-3100-4022-80f5-2bc875facac7/suGs8mWnge.lottie" 
+          background="transparent" 
+          speed="1" 
+          style="width: 200px; height: 200px" 
+          loop 
+          autoplay>
+        </dotlottie-player>`
+    },
+    {
       title: '장시간 외출을 자제하고 활동량을 줄이세요.',
       lottieHTML: `
         <dotlottie-player 
@@ -239,19 +364,6 @@ const cardData = {
         loop autoplay>
         </dotlottie-player>
         `
-    },
-    {
-      title: '외출 시 보건용 마스크 착용하기(KF80, KF94, KF99)',
-      desc: '<a href="https://www.kdca.go.kr/gallery.es?mid=a20503010000&bid=0002&act=view&list_no=144638" target="_blank" style="color: #007BFF; text-decoration: underline;">올바른 마스크 착용법 보기</a>',
-      lottieHTML: `
-        <dotlottie-player 
-          src="https://lottie.host/783839fc-3100-4022-80f5-2bc875facac7/suGs8mWnge.lottie" 
-          background="transparent" 
-          speed="1" 
-          style="width: 200px; height: 200px" 
-          loop 
-          autoplay>
-        </dotlottie-player>`
     },
     {
         title: '외출 후 깨끗이 씻기',
@@ -317,7 +429,8 @@ const cardData = {
 };
 
 // 여기만 연동 어케 잘하면 될 듯하다.
-const currentGrade = '좋음'; // API나 사용자 선택 등으로 동적으로 설정
+// API나 사용자 선택 등으로 동적으로 설정
+const currentGrade = '좋음'; // 'getLevelForJson(value)' 하면 되려나
 
 // 미세먼지 등급 구하는 함수
 function getLevelForJson(value) {
@@ -329,15 +442,16 @@ function getLevelForJson(value) {
   return '매우 나쁨';
 }
 
-const levels = ["좋음", "보통", "나쁨", "매우 나쁨"];
+const levels = ["좋음", "보통", "나쁨", "매우 나쁨"]; // 미세먼지 등급을 배열로 정의 (슬라이더와 매핑될 순서)
 
+ // HTML 요소: 슬라이더, 가이드라인 상자, 가이드라인 텍스트를 가져옴
 const slider = document.getElementById('levelSlider');
 const guidelineBox = document.getElementById('guidelineBox');
 const guidelineText = document.getElementById('guidelineText');
 
-const Index = levels.indexOf(currentGrade);
-slider.value = Index;
-renderCardsByGrade(currentGrade);
+const Index = levels.indexOf(currentGrade); // 현재 미세먼지 등급(currentGrade)이 levels 배열에서 몇 번째인지 찾음
+slider.value = Index; // 슬라이더 위치를 현재 등급에 맞게 설정
+renderCardsByGrade(currentGrade); // 현재 등급에 맞는 카드(정보)를 화면에 렌더링
 
 // 슬라이더를 움직일 때마다 카드 변경
 slider.addEventListener('input', () => {
@@ -347,12 +461,11 @@ slider.addEventListener('input', () => {
 });
 
 
-// 버튼 이벤트
+// 카드 이동 버튼
 nextBtn.addEventListener('click', nextSlide);
 prevBtn.addEventListener('click', prevSlide);
 
-
-  // 드래그 이벤트
+  // 드래그
   container.addEventListener('mousedown', touchStart);
   container.addEventListener('mousemove', touchMove);
   container.addEventListener('mouseup', touchEnd);
