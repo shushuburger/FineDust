@@ -158,6 +158,19 @@ function initMyLocation() {
               const pm25 = avg?.['PM2.5']?.toFixed(1);
               const o3 = avg?.오존?.toFixed(3);
               updateGraphSection(pm10, pm25, o3); // ✅ 그래프도 함께 업데이트
+              // ✅ PM10 기준 등급 자동 갱신
+              const grade = getLevelForJson(pm10);
+              currentGrade = grade;
+              document.getElementById('levelSlider').value = levels.indexOf(grade);
+
+              // ✅ 연령대에 따라 카드 렌더링
+              if (currentAgeGroup === 'parent') {
+                renderParentCards(grade);
+              } else if (currentAgeGroup === 'adult') {
+                renderAdultCards(grade);
+              } else if (currentAgeGroup === 'senior') {
+                renderElderlyCards(grade);
+              }
             }
           }
         })
