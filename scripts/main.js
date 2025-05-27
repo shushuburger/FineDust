@@ -99,6 +99,20 @@ document.addEventListener('DOMContentLoaded', () => {
               .openOn(map);
 
             updateGraphSection(pm10, pm25, o3);
+
+            // ✅ 등급 자동 갱신
+            const grade = getLevelForJson(pm10);
+            currentGrade = grade;
+            document.getElementById('levelSlider').value = levels.indexOf(grade);
+
+            // ✅ 연령대에 따라 카드 렌더링
+            if (currentAgeGroup === 'parent') {
+              renderParentCards(grade);
+            } else if (currentAgeGroup === 'adult') {
+              renderAdultCards(grade);
+            } else if (currentAgeGroup === 'senior') {
+              renderElderlyCards(grade);
+            }
           });
         }
       }).addTo(map);

@@ -427,7 +427,7 @@ const ParentData = {
     {
         title: '공기청정기를 사용하거나 젖은 수건을 활용해 실내 공기 질을 관리해 주세요.',
         lottieHTML: `
-          <img src="/assets/icons/air_purifier.gif" alt="공기청정기 사용 안내" style="width: 100%; max-width: 150px;" />`
+          <img src="assets/icons/air_purifier.gif" alt="공기청정기 사용 안내" style="width: 100%; max-width: 150px;" />`
     }
   ]
 };
@@ -527,7 +527,7 @@ const AdultData = {
     {
         title: '통학이나 통근 시에는 사람이 붐비는 장소를 피하고 짧은 경로를 선택해보세요.',
         lottieHTML: `
-          <img src="/assets/icons/no_people.gif" alt="공기청정기 사용 안내" style="width: 100%; max-width: 150px;" />`
+          <img src="assets/icons/no_people.gif" alt="공기청정기 사용 안내" style="width: 100%; max-width: 150px;" />`
     }
   ],
   '나쁨': [
@@ -581,7 +581,7 @@ const AdultData = {
     {
         title: '실내 공기질도 주의! 공기청정기 가동이나 실내 습도 유지를 병행하세요.',
         lottieHTML: `
-          <img src="/assets/icons/air_purifier.gif" alt="공기청정기 사용 안내" style="width: 100%; max-width: 150px;" />`
+          <img src="assets/icons/air_purifier.gif" alt="공기청정기 사용 안내" style="width: 100%; max-width: 150px;" />`
     }
   ]
 };
@@ -740,7 +740,7 @@ const ElderlyData = {
     {
       title: '실내 공기질 관리가 중요합니다. 젖은 수건을 걸어두거나 공기청정기를 활용하세요.',
       lottieHTML: `
-        <img src="/assets/icons/air_purifier.gif" alt="공기청정기 사용 안내" style="width: 100%; max-width: 150px;" />`
+        <img src="assets/icons/air_purifier.gif" alt="공기청정기 사용 안내" style="width: 100%; max-width: 150px;" />`
     },
     {
         title: '실내 공기질도 주의! 공기청정기 가동이나 실내 습도 유지를 병행하세요.',
