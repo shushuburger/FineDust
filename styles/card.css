@@ -1,10 +1,178 @@
 /* 대처 방안 섹션 */
 /* 이 아래에서 작업하세요!! (경민,여민) */
 /* 주석 삭제하지 말 것! (github 편집 시 기준점으로 삼을 거임) */
+
 .guide-section {
-    background-color: #ffffff;
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 550px;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+/*카드 집합 상위1*/
+.card-slider {
+  position: relative;
+  width: 100%;
+  height: 80%;
+  overflow: hidden;
+}
+
+/*카드 집합 상위2*/
+.cards-wrapper {
+  height: 100%;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+/*카드 집합 상위3*/
+.cards-container {
+  display: flex;
+  height: 90%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+/*카드*/
+.card {
+  flex: 0 0 70%;
+  margin: 0 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  height: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  user-select: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-slider .card:nth-child(2) {
+  transform: scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/*카드 이동 버튼*/
+.prev-btn,
+.next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.2s ease;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.prev-btn {
+  left: 10px;
+}
+.next-btn {
+  right: 10px;
+}
+
+
+/*카드 안에 텍스트(text)*/
+.card h3 {
+  padding: 0 20px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* desc 부분 */
+.card p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* 슬라이더 */
+body {
+  font-family: Arial, sans-serif;
+  padding: 0;
+  background-color: #f0f4f8;
+  color: #45ebba;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.slider {
+  width: 100%;
+  margin: 1rem 0;
+  background-color: #45ebba;
+
+}
+
+/* 슬라이더 밑에 등급 글씨*/
+.levels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.level-box {
+  padding: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  background-color: #45ebba;
+}
+
+.bold {
+  font-weight: bold;
+  color: #45ebba;
+}
+
+/* 연령대 버튼 */
+.age-buttons {
+  display: flex;
+  justify-content: center;
+  gap:12px;
+  margin: 5px 0;
+}
+
+.age-buttons button {
+  padding: 10px 20px;
+  font-size: 15px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #64b9ff;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.age-buttons button:hover {
+  background-color: #aaeafc;
+  color: rgb(0, 0, 0);
+}
+
+.age-buttons button.active {
+  background-color: #aaeafc;
+  color: rgb(0, 0, 0);
+  border-color: #aaeafc;
 }
