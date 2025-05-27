@@ -91,6 +91,7 @@
 
 /*카드 안에 텍스트(text)*/
 .card h3 {
+  padding: 0 20px;
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -146,6 +147,7 @@ body {
   color: #45ebba;
 }
 
+/* 연령대 버튼 */
 .age-buttons {
   display: flex;
   justify-content: center;

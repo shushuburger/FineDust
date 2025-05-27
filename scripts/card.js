@@ -3,7 +3,7 @@
 
 
   const container = document.querySelector('.cards-container');
-  const ageButtons = document.querySelectorAll('.age-buttons button');
+  const ageButtons = document.querySelectorAll('.age-buttons button'); // 연령대 버튼
 
   const cards = container.children;
   const prevBtn = document.querySelector('.prev-btn');
@@ -125,6 +125,7 @@ function restartLottieAnimations() {
 }
 
 // 등급에 따라 카드 안의 내용 렌더링
+// 부모 카테고리
 function renderParentCards(grade) {
   const container = document.querySelector('.cards-container'); 
   container.innerHTML = ''; // 기존 카드 제거
@@ -167,6 +168,7 @@ function renderParentCards(grade) {
   });
 }
 
+// 대학생/성인 카테고리
 function renderAdultCards(grade) {
   const container = document.querySelector('.cards-container'); 
   container.innerHTML = ''; // 기존 카드 제거
@@ -209,6 +211,7 @@ function renderAdultCards(grade) {
   });
 }
 
+// 노년층 카테고리 
 function renderElderlyCards(grade) {
   const container = document.querySelector('.cards-container'); 
   container.innerHTML = ''; // 기존 카드 제거
@@ -253,6 +256,7 @@ function renderElderlyCards(grade) {
 
 
 // 등급에 따른 애니메이션 
+// (아이가 있는)부모
 const ParentData = {
   '좋음': [
     {
@@ -428,6 +432,7 @@ const ParentData = {
   ]
 };
 
+// 대학생/성인
 const AdultData = {
   '좋음': [
     {
@@ -581,6 +586,7 @@ const AdultData = {
   ]
 };
 
+// 노년층
 const ElderlyData = {
   '좋음': [
     {
@@ -753,7 +759,7 @@ const ElderlyData = {
 
 
 // 여기만 연동 어케 잘하면 될 듯하다.
-// API나 사용자 선택 등으로 동적으로 설정
+// 지도에서 미세먼지 수치 들고와야 한다.
 let currentGrade = '좋음'; // 'getLevelForJson(value)' 하면 되려나
 
 // 미세먼지 등급 구하는 함수
@@ -773,12 +779,13 @@ const slider = document.getElementById('levelSlider');
 const guidelineBox = document.getElementById('guidelineBox');
 const guidelineText = document.getElementById('guidelineText');
 
-let currentAgeGroup = 'parent';
+let currentAgeGroup = 'adult';
 
 const Index = levels.indexOf(currentGrade); // 현재 미세먼지 등급(currentGrade)이 levels 배열에서 몇 번째인지 찾음
 slider.value = Index; // 슬라이더 위치를 현재 등급에 맞게 설정
-renderParentCards(currentGrade); // 현재 등급에 맞는 카드(정보)를 화면에 렌더링
+renderAdultCards(currentGrade); // 현재 등급에 맞는 카드(정보)를 화면에 렌더링
 
+// 버튼 동작
 ageButtons.forEach(button => {
   button.addEventListener('click', () => {
     currentAgeGroup = button.getAttribute('data-age');
