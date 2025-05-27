@@ -8,7 +8,7 @@
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  height: 500px;
+  height: 550px;
   overflow: hidden;
   perspective: 1000px;
 }
@@ -17,7 +17,7 @@
 .card-slider {
   position: relative;
   width: 100%;
-  height: 90%;
+  height: 80%;
   overflow: hidden;
 }
 
@@ -111,7 +111,7 @@ body {
 }
 
 .container {
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
   background: white;
   padding: 2rem;
@@ -144,4 +144,33 @@ body {
 .bold {
   font-weight: bold;
   color: #45ebba;
+}
+
+.age-buttons {
+  display: flex;
+  justify-content: center;
+  gap:12px;
+  margin: 5px 0;
+}
+
+.age-buttons button {
+  padding: 10px 20px;
+  font-size: 15px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #64b9ff;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.age-buttons button:hover {
+  background-color: #aaeafc;
+  color: rgb(0, 0, 0);
+}
+
+.age-buttons button.active {
+  background-color: #aaeafc;
+  color: rgb(0, 0, 0);
+  border-color: #aaeafc;
 }
