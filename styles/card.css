@@ -35,8 +35,6 @@
   height: 90%;
   transform-style: preserve-3d;
   transition: transform 0.5s ease;
-  
-
 }
 
 /*카드*/
@@ -124,6 +122,8 @@ body {
 .slider {
   width: 100%;
   margin: 1rem 0;
+  background-color: #45ebba;
+
 }
 
 /* 슬라이더 밑에 등급 글씨*/
@@ -138,10 +138,10 @@ body {
   padding: 1rem;
   border-radius: 8px;
   transition: background-color 0.3s ease;
+  background-color: #45ebba;
 }
 
 .bold {
   font-weight: bold;
   color: #45ebba;
 }
-
