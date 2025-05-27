@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const locationText = document.getElementById('location');
   const timeText = document.getElementById('time');
 
+  // ✅ 순차적으로 데이터 fetch → 마지막에 내 위치로 초기화
   fetch('./assets/geo/code_to_fullname_map_combined.json')
     .then(res => res.json())
     .then(codeMap => {
@@ -60,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(res => res.json())
     .then(geojson => {
       geojsonLayer = L.geoJSON(geojson, {
-        /* 대전광역시만 보이도록 필터링 */
         filter: feature => {
           const code = feature.properties.code.toString().padStart(5, '0');
           const full = codeToFullnameMap[code]?.full;
@@ -102,8 +102,16 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }
       }).addTo(map);
+
+      // ✅ 모든 데이터가 준비된 후 위치 기반 초기화 실행
+      initMyLocation();
     })
     .catch(err => console.error('❌ JSON 로딩 오류:', err));
+});
+
+function initMyLocation() {
+  const locationText = document.getElementById('location');
+  const timeText = document.getElementById('time');
 
   navigator.geolocation.getCurrentPosition(
     (pos) => {
@@ -135,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
               const pm10 = avg?.PM10?.toFixed(1);
               const pm25 = avg?.['PM2.5']?.toFixed(1);
               const o3 = avg?.오존?.toFixed(3);
-              updateGraphSection(pm10, pm25, o3);
+              updateGraphSection(pm10, pm25, o3); // ✅ 그래프도 함께 업데이트
             }
           }
         })
@@ -150,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
       timeText.textContent = formatTime(new Date());
     }
   );
-});
+}
 
 function updateGaugeImage() {
   const gaugeImg = document.getElementById('ruleGauge');
