@@ -1,31 +1,32 @@
 /* 대처 방안 섹션 */
 /* 이 아래에서 작업하세요!! (경민,여민) */
 /* 주석 삭제하지 말 것! (github 편집 시 기준점으로 삼을 거임) */
+
 .guide-section {
   background-color: #ffffff;
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 12px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  height: 400px;
+  height: 500px;
   overflow: hidden;
   perspective: 1000px;
 }
-
+/*카드 집합 상위1*/
 .card-slider {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 90%;
   overflow: hidden;
 }
-
+/*카드 집합 상위2*/
 .cards-wrapper {
   height: 100%;
   overflow: hidden;
   align-items: center;
   justify-content: center;
 }
-
+/*카드 집합 상위3*/
 .cards-container {
   display: flex;
   height: 90%;
@@ -34,7 +35,7 @@
   
   
 }
-
+/*카드*/
 .card {
   flex: 0 0 70%;
   margin: 0 20px;
@@ -54,7 +55,7 @@
   transform: scale(1.05);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
-
+/*카드 이동 버튼*/
 .prev-btn,
 .next-btn {
   position: absolute;
@@ -83,3 +84,56 @@
 .next-btn {
   right: 10px;
 }
+
+/*카드 안에 내용*/
+.card h3 {
+  font-size: 20px; /* 원하는 title 크기 */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px; /* 원하는 desc 크기 */
+  line-height: 1.5;
+}
+
+/*슬라이더*/
+body {
+  font-family: Arial, sans-serif;
+  padding: 0;
+  background-color: #f0f4f8;
+  color: #333;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.slider {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.levels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.level-box {
+  padding: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.bold {
+  font-weight: bold;
+  color: #45ebba;
+}
+
