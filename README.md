@@ -1,7 +1,4 @@
 # 미세먼지 데이터 시각화 웹 서비스 개발
-## QR 이미지
-![제목 없음](https://github.com/user-attachments/assets/a2d47c27-9d31-4459-91ae-c92ffe93fa31)
-
 ## 목표
 
 미세먼지 데이터의 지도 및 대시보드 자료로 시각화된 웹 서비스 개발 및 산업/일상생활 영향 알림 제공
@@ -51,19 +48,38 @@ data : 미세먼지 API에게서 받아온 data를 저장하는 폴더입니다.
 
 ---------------------------------------------------------------
 
+## QR 이미지
+![제목 없음](https://github.com/user-attachments/assets/a2d47c27-9d31-4459-91ae-c92ffe93fa31)
+
+---------------------------------------------------------------
+
 # 12, 13주차 활동
 ## 활동 내용
 - 노션 기록
-- 
+- 발표 피드백 반영
+- 테스트 결과 문서 작성
+- 사용자 피드백 진행
+- 13주차 발표 자료 제작 (최종 발표 자료와 동일)
+- 13주차 발표 영상 제작 및 업로드
 
-## 발표 URL : 
+## 발표 URL : https://www.youtube.com/watch?v=NSxm-MJTPjI&ab_channel=0229won
 
 ## 제출물
+- 04조-13주차-미세먼지 데이터 시각화 웹서비스 개발-테스트 결과 문서.docx
+- 04조-13주차-미세먼지 데이터 시각화 웹서비스 개발-테스트 결과 문서.pdf
+- 04조-13주차-미세먼지 데이터 시각화 웹 서비스 개발-발표영상 링크.txt
+- 04조-13주차-미세먼지 데이터 시각화 웹 서비스 개발-발표자료.pdf
   
-## GIT ISSUE(ISSUE 번호 : ) :
+## GIT ISSUE(팀원 각자 1~2개의 issue 및 branch 담당하여 진행)
+### 김경민 (ISSUE 번호 : #21) : https://github.com/shushuburger/FineDust/issues/21
+### 김은수 (ISSUE 번호 : #22, #27) : https://github.com/shushuburger/FineDust/issues/22, https://github.com/shushuburger/FineDust/issues/27
+### 심여민 (ISSUE 번호 : #20, #32) : https://github.com/shushuburger/FineDust/issues/20, https://github.com/shushuburger/FineDust/issues/32
 
-## GIT PR(PR 번호 : ) :
-  
+## GIT PR(팀원 각자 담당한 ISSUE의 PR 담당하여 진행)
+### 김경민 (PR 번호 : #29, #31) : https://github.com/shushuburger/FineDust/pull/29, https://github.com/shushuburger/FineDust/pull/31
+### 김은수 (PR 번호 : #26, #28, #30) : https://github.com/shushuburger/FineDust/pull/26, https://github.com/shushuburger/FineDust/pull/28, https://github.com/shushuburger/FineDust/pull/30
+### 심여민 (PR 번호 : #33) : https://github.com/shushuburger/FineDust/pull/33
+
 ---------------------------------------------------------------
 
 # 11주차 활동
